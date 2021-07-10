@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <!--自定义组件-->
+    <lihaobiao v-for="item in items" v-bind:data="item"></lihaobiao>
+
+
+</div>
+
+<!--导入Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script type="text/javascript">
+
+    //定义一个Vue组件component
+    Vue.component("lihaobiao", {
+        //接收参数
+        props: ["data"],
+        //定义模板
+        template: "<li>{{data}}</li>"
+
+    });
+
+    var vm = new Vue(
+        {   /*VUE常用的7个属性*/
+            el: "#app",
+            data: {
+                items: ["java", "linux", "前端"]
+            }
+        }
+    );
+</script>
+</body>
+</html>

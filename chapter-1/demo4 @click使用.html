@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+     <!--v-on:click 绑定事件 缩写为@click-->
+    <button v-on:click="sayHi">Click Me</button>
+</div>
+
+<!--导入Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+
+<script type="text/javascript">
+    // alert('1')
+    var vm = new Vue(
+        {   /*VUE常用的7个属性*/
+            el: "#app",
+            data: {
+               message: '你好'
+            },
+            methods: {
+                sayHi: function () {
+                  alert(this.message)
+                }
+            }
+           /* template: {},
+            computed: {},
+            watch:{},
+            render:{}*/
+
+        }
+    );
+</script>
+</body>
+</html>

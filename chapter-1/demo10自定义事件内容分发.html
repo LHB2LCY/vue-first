@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <todo>
+        <todo-title slot="todo-title" :title1="title"></todo-title>
+        <todo-items slot="todo-items" v-for="(index,item) in items"
+                    :item1="item" :index1="index" @remove1="removeItems(index)"></todo-items>
+    </todo>
+
+</div>
+
+<!--导入Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script type="text/javascript">
+
+    Vue.component("todo", {
+        template: '<div>\
+         <slot name="todo-title"></slot>\
+         <ul>\
+           <slot name="todo-items"></slot>\
+         </ul>\
+          </div>'
+    });
+
+    Vue.component("todo-title", {
+        props: ['title1'],
+        template: '<div>{{title1}}</div>'
+    });
+
+    Vue.component("todo-items", {
+        //父组件向子组件传值是通过的属性来实现的
+        props: ['item1', 'index1'],
+        template: '<li>{{item1}}----{{index1}}<button @click="remove">删除</button></li>',
+        //只能绑定当前的组件的方法
+        methods: {
+            remove: function (index1) {
+                //子组件删除，必须从父组件删除，所以两者需要通信，子组件通过emit告诉父组件
+                //子组件--->前端（界面）--->父组件
+                this.$emit('remove1', index1)
+            }
+        }
+    });
+
+
+    var vm = new Vue(
+        {
+            el: "#app",
+            data: {
+                title: '秦疆老师的课程系列',
+                items: ["狂神说java", "狂神说linux", "狂神说前端"]
+            },
+            methods: {
+                removeItems: function (index) {
+                    this.items.splice(index, 1);//删除当前索引的一个
+                }
+            }
+        }
+    );
+</script>
+</body>
+</html>

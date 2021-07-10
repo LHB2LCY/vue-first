@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <todo>
+         <todo-title slot="todo-title" :title1="title"></todo-title>
+         <todo-items slot="todo-items" v-for="item in items" :item1="item"></todo-items>
+    </todo>
+
+</div>
+
+<!--导入Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+
+<script type="text/javascript">
+
+    Vue.component("todo", {
+        template: '<div>\
+         <slot name="todo-title"></slot>\
+         <ul>\
+           <slot name="todo-items"></slot>\
+         </ul>\
+          </div>'
+    });
+
+    Vue.component("todo-title",{
+        props: ['title1'],
+        template: '<div>{{title1}}</div>'
+    });
+
+    Vue.component("todo-items",{
+        props: ['item1'],
+        template: '<li>{{item1}}</li>'
+    });
+
+
+    var vm = new Vue(
+        {
+            el: "#app",
+            data: {
+                title: '秦疆老师的课程系列',
+                items: ["狂神说java","狂神说linux","狂神说前端"]
+            }
+        }
+    );
+</script>
+</body>
+</html>

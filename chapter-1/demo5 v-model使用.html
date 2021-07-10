@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <!--数据双向绑定-->
+    <!-- <input type="text" v-model="message">{{message}}
+     <textarea></textarea>
+     <input type ="radio" name="sex" value="Nan">-->
+    下拉框：<select v-model="checked">
+    <option value="" disabled>--请选择--</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+</select>
+    选中值：{{checked}}
+
+</div>
+
+<!--导入Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+
+<script type="text/javascript">
+    // alert('1')
+    var vm = new Vue(
+        {   /*VUE常用的7个属性*/
+            el: "#app",
+            data: {
+                checked: ''
+            }
+
+        }
+    );
+</script>
+</body>
+</html>
